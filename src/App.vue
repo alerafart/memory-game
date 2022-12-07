@@ -1,17 +1,27 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <h1>Welcome to the Memory Game</h1>
+  <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+  <CardsGrid />
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import CardsGrid from './components/CardsGrid.vue';
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    CardsGrid
+  },
+  data() {
+    return {
+
+    }
+  },
+  methods() {
+
   }
 }
+
 </script>
 
 <style>
