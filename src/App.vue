@@ -1,7 +1,7 @@
 <template>
   <h1>Welcome to the Memory Game</h1>
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-  <CardsGrid />
+  <CardsGrid :turn="handleClick"/>
 
 </template>
 
@@ -14,11 +14,14 @@ export default {
   },
   data() {
     return {
-
+      turned:false
     }
   },
-  methods() {
-
+  methods: {
+    handleClick(e) {
+      // let clicked = e.target;
+      console.log('clicked'+e)
+    }
   }
 }
 
