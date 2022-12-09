@@ -15,7 +15,6 @@
 </template>
 
 <script>
-
 import cardsItems from "../../cardsList";
 
 export default {
@@ -28,6 +27,7 @@ export default {
     };
   },
   methods: {
+    // flip 2 cards and compare them
     flipCard(card) {
       card.isFlipped = true;
       this.pairs.push(card);
@@ -36,6 +36,7 @@ export default {
         this.compare(this.pairs[0].image, this.pairs[1].image);
       }
     },
+    // compares 2 flipped cards
     compare(a, b) {
       if (a == b) {
         console.log("match");
@@ -46,14 +47,12 @@ export default {
         this.pairs.forEach((card) => {
           setTimeout(() => {
             card.isFlipped = false;
-          }, "2000");
-          
+          }, "1500"); 
         });
-        clearTimeout();
       }
       this.pairs = [];
-      
     },
+    // shuffle cards method
     shuffle(array) {
       const newArray = [...array];
       const length = newArray.length;
@@ -63,13 +62,12 @@ export default {
           (newArray.length - start) * Math.random()
         );
         const randomItem = newArray.splice(randomPosition, 1);
-
         newArray.push(...randomItem);
       }
-
       return newArray;
     },
   },
+  // calls  shuffle function on each reload
   created() {
     this.cards = this.shuffle(this.cards)
   }
