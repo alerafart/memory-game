@@ -15,7 +15,9 @@
 </template>
 
 <script>
+
 import cardsItems from "../../cardsList";
+
 export default {
   name: "CardsGrid",
   data() {
@@ -42,16 +44,35 @@ export default {
       } else {
         console.log("no match");
         this.pairs.forEach((card) => {
-          setTimeout(()=> {
+          setTimeout(() => {
             card.isFlipped = false;
-          }, "2000")
+          }, "2000");
           
         });
+        clearTimeout();
       }
-      this.pairs = []
+      this.pairs = [];
+      
     },
-    shuffle() {},
+    shuffle(array) {
+      const newArray = [...array];
+      const length = newArray.length;
+
+      for (let start = 0; start < length; start++) {
+        const randomPosition = Math.floor(
+          (newArray.length - start) * Math.random()
+        );
+        const randomItem = newArray.splice(randomPosition, 1);
+
+        newArray.push(...randomItem);
+      }
+
+      return newArray;
+    },
   },
+  created() {
+    this.cards = this.shuffle(this.cards)
+  }
 };
 </script>
 

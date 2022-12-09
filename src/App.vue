@@ -8,7 +8,6 @@
   :key="card[index]"
   :pic="'./assets/animals/' + card.image"/> -->
 
-  <p>composant avec data dedans</p>
   <CardsGrid />
 </template>
 
@@ -25,7 +24,6 @@ export default {
       cards:cardsItems.cardsList
     };
   },
-  
   created() {
     this.cards.forEach((card) => {
       card.isFlipped = false;
