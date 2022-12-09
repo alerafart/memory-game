@@ -25,12 +25,7 @@ export default {
       cards:cardsItems.cardsList
     };
   },
-  methods: {
-    handleClick(e) {
-      // let clicked = e.target;
-      console.log('clicked'+e.target.value)
-    }
-  },
+  
   created() {
     this.cards.forEach((card) => {
       card.isFlipped = false;
