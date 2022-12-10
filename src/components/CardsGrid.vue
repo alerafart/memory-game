@@ -1,6 +1,6 @@
 <template>
-  <div class="cardwrap row row-cols-5 row-cols-md-5 g-0">
-    <div class="card" v-for="(card, index) in cards" :key="card[index]">
+  <div class="cardwrap row row-cols-6 row-cols-md-8 g-3">
+    <div class="card"  v-for="(card, index) in cards" :key="card[index]">
       <img
         @click="flipCard(card, card.image)"
         :src="
@@ -18,17 +18,20 @@
 import cardsItems from "../../cardsList";
 
 export default {
+  
   name: "CardsGrid",
   data() {
     return {
       cards: cardsItems.cardsList,
       pairs: [],
       found: [],
+      loadingTimeOut:1500
     };
   },
   methods: {
     // flip 2 cards and compare them
     flipCard(card) {
+      console.log('flip called')
       card.isFlipped = true;
       this.pairs.push(card);
       if (this.pairs.length == 2) {
@@ -36,6 +39,14 @@ export default {
         this.compare(this.pairs[0].image, this.pairs[1].image);
       }
     },
+    duplicate(a) {
+      a.flatMap(i => [i,i]);
+      // return a;
+    //   a.forEach((card)=>{
+    //     a.push(card);
+    //     console.log(this.cards);
+    //   })
+    }, 
     // compares 2 flipped cards
     compare(a, b) {
       if (a == b) {
@@ -44,10 +55,12 @@ export default {
         console.log("pairs found" + this.found);
       } else {
         console.log("no match");
+        console.log(this.found);
         this.pairs.forEach((card) => {
           setTimeout(() => {
             card.isFlipped = false;
-          }, "1500"); 
+          }, this.loadingTimeOut); 
+          
         });
       }
       this.pairs = [];
@@ -62,15 +75,27 @@ export default {
           (newArray.length - start) * Math.random()
         );
         const randomItem = newArray.splice(randomPosition, 1);
-        newArray.push(...randomItem);
+        newArray.push(...randomItem); 
       }
-      return newArray;
+      return newArray; 
     },
   },
   // calls  shuffle function on each reload
+  onMount() {
+    // this.cards.forEach((card) => {
+    //   this.cards.push(card);
+    // });
+  },
   created() {
-    this.cards = this.shuffle(this.cards)
-  }
+    this.cards = this.shuffle(this.cards);
+
+    this.cards.forEach((card) => {
+      // this.cards.push(card);
+      // this.duplicate(card);
+      card.isFlipped = false;
+    });
+  },
+  
 };
 </script>
 
@@ -82,7 +107,11 @@ export default {
   visibility: hidden;
 }
 .cardwrap {
-  background-image: url("../../public/assets/square.jpg");
-  border: 1px solid black;
+  /* background-image: url("../../public/assets/square.jpg"); */
+  border: none;
+}
+.card{
+  --bs-card-border-color: none;
+  /* width: 12rem; */
 }
 </style>
