@@ -1,5 +1,5 @@
 <template>
-  <p flip="start" class="timer">Timer {{ time }}</p>
+  <p class="timer">Timer {{ time }}</p>
 </template>
 
 <script>
@@ -16,7 +16,6 @@ export default {
       stoppedDuration: 0,
       started: null,
       running: false,
-      x:this.flipy
     };
   },
   props: ['flipy'],
@@ -59,21 +58,15 @@ export default {
       return (zero + num).slice(-digit);
     },
   },
+  // watch prop flipy comming from 'flip:null' in parents data
+  // on first click on a card it changes and this will trigger timer to start
   watch: { 
       flipy: function(newVal, oldVal) { // watch it
           console.log('Prop changed: ', newVal, ' | was: ', oldVal)
+          this.start()
         }
       }
-  // watch(cards, ())
-    // cards:
-    // cards: function(cards){
-    //   cards.forEach((card, i) => {
-    //     if (card[i].isFlipped){
-    //       this.running = true;
-    //     }
-    //   });
-    // }
-  // }
+
 };
 </script>
 
