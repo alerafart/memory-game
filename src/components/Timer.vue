@@ -1,11 +1,12 @@
 <template>
-  <p @click="start">Timer {{ time }}</p>
+  <p flip="start" class="timer">Timer {{ time }}</p>
 </template>
 
 <script>
+// import {ref} from 'vue';
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
-  name: "Timer2",
+  name: "Timer",
   data() {
     return {
       time: "00:00",
@@ -15,9 +16,10 @@ export default {
       stoppedDuration: 0,
       started: null,
       running: false,
+      x:this.flipy
     };
   },
-
+  props: ['flipy'],
   methods: {
     start() {
       this.currentTime = new Date();
@@ -42,11 +44,13 @@ export default {
         sec = timeElapsed.getUTCSeconds();
       this.time = this.zeroPrefix(min, 2) + ":" + this.zeroPrefix(sec, 2);
     },
+
     stop() {
       this.running = false;
       this.timeStopped = new Date();
       clearInterval(this.started);
     },
+
     zeroPrefix(num, digit) {
       var zero = "";
       for (var i = 0; i < digit; i++) {
@@ -55,7 +59,32 @@ export default {
       return (zero + num).slice(-digit);
     },
   },
+  watch: { 
+      flipy: function(newVal, oldVal) { // watch it
+          console.log('Prop changed: ', newVal, ' | was: ', oldVal)
+        }
+      }
+  // watch(cards, ())
+    // cards:
+    // cards: function(cards){
+    //   cards.forEach((card, i) => {
+    //     if (card[i].isFlipped){
+    //       this.running = true;
+    //     }
+    //   });
+    // }
+  // }
 };
 </script>
 
-<style></style>
+<style>
+.timer {
+  border-radius: 5px;
+  border: 1px solid gray;
+  width: 20rem;
+  padding: 2px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color:rgb(99, 98, 98);
+}
+</style>

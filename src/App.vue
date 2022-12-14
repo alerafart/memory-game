@@ -8,24 +8,27 @@
   v-for="(card, index) in cards" 
   :key="card[index]"
   :pic="'./assets/animals/' + card.image"/> -->
-    <Timer2 />
+    <!-- <Timer2 /> -->
     <CardsGrid />
+    <!-- <allCardsGrid /> -->
   </div>
 </template>
 
 <script>
-import cardsItems from "../cardsList";
+// import cardsItems from "../cardsList";
+// import allCardsGrid from "./components/allCardsGrid.vue";
 import CardsGrid from "./components/CardsGrid.vue";
-import Timer2 from "./components/Timer2.vue";
+// import Timer2 from "./components/Timer2.vue";
 export default {
   name: "App",
   components: {
     CardsGrid,
-    Timer2,
+    // Timer2,
+    // allCardsGrid
   },
   data() {
     return {
-      cards: cardsItems.cardsList,
+      // cards: cardsItems.cardsList,
     };
   },
   // onMount() {

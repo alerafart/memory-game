@@ -1,11 +1,9 @@
 <template>
-    <Timer 
-    ref="timerTriggerStart"  :start="startTimer"
-     :flipy="flip"/>
+    <Timer ref="timerTriggerStart" :start="start"/>
     <div class="cardwrap row row-cols-6 row-cols-md-8 g-3">
-      <div class="card"  v-for="(card, index) in cards" :key="index">
+      <div class="card"  v-for="(card, index) in cards" :key="card[index]">
         <img
-          @click="flipCard(card, index), startTimer()"
+          @click="flipCard(card, card.id)"
           :src="
             card.isFlipped
               ? '../assets/animals/' + card.image
@@ -30,19 +28,14 @@ import Timer from './Timer.vue';
         cards: cardsItems.cardsList,
         pairs: [],
         found: [],
-        flip:null,
-        // loadingTimeOut:1500
+        loadingTimeOut:1500
       };
     },
     components:{
       Timer
     },
-    // props:['start'],
+    props:['start'],
     methods: {
-      startTimer() {
-        console.log('start timer method');
-        this.flip=true;
-      },
       // flip 2 cards and compare them
       flipCard(card) {
         console.log('flip called');
@@ -74,7 +67,7 @@ import Timer from './Timer.vue';
           this.pairs.forEach((card) => {
             setTimeout(() => {
               card.isFlipped = false;
-            }, 1500); 
+            }, this.loadingTimeOut); 
             
           });
         }
