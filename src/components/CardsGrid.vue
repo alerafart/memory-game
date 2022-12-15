@@ -1,9 +1,9 @@
 <template>
-  <Timer ref="timerTriggerStart" :flipy="flip" />
+  <Timer ref="timerTriggerStart" :flipy="flip" :stopp="finished" />
   <div class="cardwrap row row-cols-6 row-cols-md-8 g-3">
     <div class="card" v-for="(card, index) in cards" :key="index">
       <img
-        @click="flipCard(card, index), startTimer()"
+        @click="flipCard(card, index), startTimer(), stopTimer()"
         :src="
           card.isFlipped
             ? '../assets/animals/' + card.image
@@ -29,6 +29,7 @@ export default {
       pairs: [],
       found: [],
       flip: null,
+      finished:false
       // loadingTimeOut:1500
     };
   },
@@ -39,6 +40,14 @@ export default {
     // start timer method to send prop to child component in order to start timer on first flip card event
     startTimer() {
       this.flip = true;
+    },
+    // compares total cards array with found array
+    // if all cards found change finished to true which sends info to timer component
+    // in order to stop it
+    stopTimer() {
+      if(this.found.length == this.cards.length) {
+        this.finished = true;
+      }
     },
     // flip 2 cards and compare them
     flipCard(card) {

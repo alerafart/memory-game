@@ -26,7 +26,7 @@ export default {
       selection: [],
       pairs: [],
       found: [],
-      loadingTimeOut: 1500,
+      // loadingTimeOut: 1500,
     };
   },
   methods: {
@@ -60,7 +60,7 @@ export default {
         this.pairs.forEach((card) => {
           setTimeout(() => {
             card.isFlipped = false;
-          }, this.loadingTimeOut);
+          }, 1000);
         });
       }
       this.pairs = [];
