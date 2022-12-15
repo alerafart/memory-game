@@ -8,6 +8,7 @@
   :pic="'./assets/animals/' + card.image"/> -->
     <CardsGrid />
     <!-- <allCardsGrid /> -->
+    <footer>Thanks for playing</footer>
   </div>
 </template>
 
@@ -37,5 +38,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+footer {
+  padding: 2rem;
+  font-size: 1.5rem;
 }
 </style>

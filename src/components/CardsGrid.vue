@@ -1,6 +1,6 @@
 <template>
-  <Timer ref="timerTriggerStart" :flipy="flip" :stopp="finished" />
-  <div class="cardwrap row row-cols-6 row-cols-md-8 g-3">
+  <Timer class="timer" ref="timerTriggerStart" :flipy="flip" :allFound="finished" />
+  <div class="cardwrap row row-cols-4 row-cols-md-8 g-3">
     <div class="card" v-for="(card, index) in cards" :key="index">
       <img
         @click="flipCard(card, index), startTimer(), stopTimer()"
@@ -47,6 +47,7 @@ export default {
     stopTimer() {
       if(this.found.length == this.cards.length) {
         this.finished = true;
+        
       }
     },
     // flip 2 cards and compare them
@@ -122,6 +123,6 @@ export default {
 }
 .card {
   --bs-card-border-color: none;
-  /* width: 12rem; */
 }
+
 </style>

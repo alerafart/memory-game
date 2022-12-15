@@ -18,7 +18,7 @@ export default {
       running: false,
     };
   },
-  props: ["flipy", "stopp"],
+  props: ["flipy", "allFound"],
   methods: {
     start() {
       this.currentTime = new Date();
@@ -62,13 +62,12 @@ export default {
   // on first click on a card it changes and this will trigger timer to start
   watch: {
     flipy: function (newVal, oldVal) {
-      // watch it
       console.log("Prop changed: ", newVal, " | was: ", oldVal);
       this.start();
     },
-    stopp: function(newVal, oldVal) {
-      console.log("Prop changed: ", newVal, " | was: ", oldVal);
+    allFound: function() {
       this.stop();
+      alert('You win in ' + this.time)
     }
   },
 };
@@ -83,5 +82,6 @@ export default {
   font-size: 1.5rem;
   font-weight: bold;
   color: rgb(99, 98, 98);
+  
 }
 </style>
