@@ -1,6 +1,6 @@
 <template>
   <Timer class="timer" ref="timerTriggerStart" :flipy="flip" :allFound="finished" />
-  <div class="cardwrap row row-cols-4 row-cols-md-8 g-3">
+  <div class="cardwrap row row-cols-6 row-cols-md-8 g-3">
     <div class="card" v-for="(card, index) in cards" :key="index">
       <img
         @click="flipCard(card, index), startTimer(), stopTimer()"
